@@ -1,31 +1,37 @@
-template<class T>
-Vector<T>::Vector(unsigned int _capacity) : size(0), capacity(_capacity), buffer(0) 
+template <class T>
+Vector<T>::Vector(unsigned int capacity) : _size(0), _capacity(capacity), buffer(0) 
 {
-    buffer = new T[size];
+    buffer = new T[_size];
+}
+
+template <class T>
+Vector<T>::~Vector()
+{
+   delete [] buffer; 
 }
 
 template <class T>
 void Vector<T>::push_back(const T& value)
 {
-    buffer[size++] = value;
+    buffer[_size++] = value;
 }
 
 template <class T>
 T& Vector<T>::back() 
 {
-    return buffer[size - 1];
+    return buffer[_size - 1];
 }
 
 template <class T>
-unsigned int Vector<T>::getSize()
+unsigned int Vector<T>::size()
 {
-    return size;
+    return _size;
 }
 
 template <class T>
-unsigned int Vector<T>::getCapacity()
+unsigned int Vector<T>::capacity()
 {
-    return capacity;
+    return _capacity;
 }
 
 template <class T>
@@ -35,9 +41,9 @@ void Vector<T>::reserve(unsigned int _capacity)
 }
 
 template <class T>
-void Vector<T>::resize(unsigned int _size)
+void Vector<T>::resize(unsigned int size)
 {
-    if (_size < size) 
+    if (size < _size) 
         throw std::range_error("Size cannot be lower than current size");
 }
 
