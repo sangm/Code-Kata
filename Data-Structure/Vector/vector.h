@@ -1,29 +1,29 @@
-#include <stdexcept>
-
-#define DEFAULT_CAPACITY 10
-
 template <class T>
-class Vector 
-{
+class Vector {
 private:
-    unsigned int _size;
-    unsigned int _capacity;
+    unsigned int __size;
+    unsigned int __capacity;
 
     T* buffer;
+
 public:
-    Vector(unsigned int _capacity = 0);
+    Vector(unsigned int capacity = 0);
     ~Vector();
 
+    void reserve(unsigned int new_capacity);
+
     void push_back(const T& value);
+    void pop_back(); 
 
-    unsigned int size();
-    unsigned int capacity();
-
-    void reserve(unsigned int capacity);
-    void resize(unsigned int size);
-
+    T* data() const;
+    bool empty() const;
+    unsigned int size() const;
+    unsigned int capacity() const;
     T& back();
     T& front();
+
+    /* Overloading operators */
+    T& operator[](unsigned int index);
 };
 
 #include "vector.cpp"

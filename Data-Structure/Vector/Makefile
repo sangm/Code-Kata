@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -pthread -Wall -std=c++11
 
-TestVector: TestVector.cpp vector.h
-	$(CXX) $(CXXFLAGS) $^ -lgtest -lpthread -o $@
+TestVector: TestVector.cpp vector.cpp vector.h
+	$(CXX) $(CXXFLAGS) TestVector.cpp -lgtest -lpthread -o $@
 
 .PHONY: clean
 clean:

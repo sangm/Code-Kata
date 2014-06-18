@@ -1,49 +1,82 @@
+#include <stdexcept>
+
 template <class T>
-Vector<T>::Vector(unsigned int capacity) : _size(0), _capacity(capacity), buffer(0) 
+Vector<T>::Vector(unsigned int capacity) : __size(0), __capacity(capacity)
 {
-    buffer = new T[_size];
+    buffer = new T[__capacity];
 }
 
 template <class T>
 Vector<T>::~Vector()
 {
-   delete [] buffer; 
+    delete [] buffer;
+}
+
+template <class T>
+void Vector<T>::reserve(unsigned int new_capacity)
+{
+    if (new_capacity < __capacity) return;
+    __capacity = new_capacity;
+    T* temp_buffer = new T[__capacity];
+    for (int i = 0; i < __size; ++i) 
+        temp_buffer[i] = buffer[i];
+    delete [] buffer;
+    buffer = temp_buffer;
 }
 
 template <class T>
 void Vector<T>::push_back(const T& value)
 {
-    buffer[_size++] = value;
+    if (__size >= __capacity) 
+        reserve((__size*2) + 1);
+    buffer[__size++] = value;
 }
 
 template <class T>
-T& Vector<T>::back() 
+void Vector<T>::pop_back()
 {
-    return buffer[_size - 1];
+    if (__size == 0)
+        throw std::out_of_range("Vector is empty. Cannot pop");
+    --__size;
 }
 
 template <class T>
-unsigned int Vector<T>::size()
+T* Vector<T>::data() const 
 {
-    return _size;
+    return buffer;
 }
 
 template <class T>
-unsigned int Vector<T>::capacity()
+bool Vector<T>::empty() const
 {
-    return _capacity;
+    return __size == 0;
 }
 
 template <class T>
-void Vector<T>::reserve(unsigned int _capacity)
+unsigned int Vector<T>::size() const
 {
-
+    return __size;
 }
 
 template <class T>
-void Vector<T>::resize(unsigned int size)
+unsigned int Vector<T>::capacity() const
 {
-    if (size < _size) 
-        throw std::range_error("Size cannot be lower than current size");
+    return __capacity;
 }
 
+template <class T>
+T& Vector<T>::back()
+{
+    return buffer[__size - 1];
+}
+
+template <class T>
+T& Vector<T>::front()
+{
+    return buffer[0];
+}
+template <class T>
+T& Vector<T>::operator[](unsigned int index)
+{
+    return buffer[index];
+}   
