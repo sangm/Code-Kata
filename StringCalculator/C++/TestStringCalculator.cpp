@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <regex>
 #include "StringCalculator.h"
 
 class TestStringCalculator : public ::testing::Test {
@@ -28,4 +29,8 @@ TEST_F(TestStringCalculator, UnknownAmountStringsReturnsInt) {
 }
 TEST_F(TestStringCalculator, HandleNewLineCharacter) {
     EXPECT_EQ(stringCalc.add("1\\n2\\n3,4"), 10);
+}
+
+TEST(RegexAPI, TestRegexAPI) {
+
 }
