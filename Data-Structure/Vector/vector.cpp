@@ -25,6 +25,19 @@ void Vector<T>::reserve(unsigned int new_capacity)
 }
 
 template <class T>
+void Vector<T>::resize(unsigned int size, const T& val)
+{
+    if (size > __capacity)
+        reserve(size + 5);
+    if (size < __size) 
+        for (int i = __size; i > size; --i)
+            pop_back();
+    else if (size > __size)
+        for (int i = __size; i < size; ++i)
+            push_back(val);
+}
+
+template <class T>
 void Vector<T>::push_back(const T& value)
 {
     if (__size >= __capacity) 

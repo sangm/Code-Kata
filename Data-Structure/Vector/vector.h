@@ -11,6 +11,7 @@ public:
     ~Vector();
 
     void reserve(unsigned int new_capacity);
+    void resize(unsigned int new_size, const T& val = 0);
 
     void push_back(const T& value);
     void pop_back(); 

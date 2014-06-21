@@ -11,6 +11,34 @@ protected:
     Vector<int> vector;
 };
 
+TEST_F(TestVectorFunction, ResizeVectorSizeGreaterThanCurrentCapacity)
+{
+    ASSERT_EQ(vector.capacity(), 0);
+    vector.resize(5);
+    EXPECT_LE(5, vector.capacity());
+}
+TEST_F(TestVectorFunction, ResizeVectorSizeGreaterThanCurrentSize)
+{
+    vector.push_back(1);
+    // vector = [1]
+    ASSERT_EQ(vector.size(), 1);
+    vector.resize(5, -1);
+    // vector = [1, -1, -1, -1, -1]
+    EXPECT_EQ(vector[0], 1);
+    EXPECT_EQ(vector[1], -1);
+    EXPECT_EQ(vector[2], -1);
+    EXPECT_EQ(vector[3], -1);
+    EXPECT_EQ(vector[4], -1);
+}
+TEST_F(TestVectorFunction, ResizeVectorSizeSmallerThanCurrentSize)
+{
+    for (int i = 0; i < 10; ++i) 
+        vector.push_back(i);
+    ASSERT_EQ(vector.size(), 10);
+    vector.resize(5);
+    EXPECT_EQ(vector.back(), 4);
+
+}
 TEST_F(TestVectorFunction, PopBackDecrementsSize)
 {
     vector.push_back(10);
@@ -95,7 +123,7 @@ TEST(TestVectorTemplate, VectorSupportsMultipleTypes)
 {
     Vector<int> intVector;
     Vector<float> floatVector;
-    Vector<char *> stringVector;
+    Vector<std::string> stringVector;
 
     intVector.push_back(10);
     floatVector.push_back(20.021);
