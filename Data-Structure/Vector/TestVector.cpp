@@ -91,6 +91,21 @@ TEST(TestVectorConstructor, ConstructorSetsSizeCapacityToZero)
     EXPECT_EQ(vector.size(), 0);
     EXPECT_EQ(vector.capacity(), 0);
 }
+TEST(TestVectorTemplate, VectorSupportsMultipleTypes)
+{
+    Vector<int> intVector;
+    Vector<float> floatVector;
+    Vector<char *> stringVector;
+
+    intVector.push_back(10);
+    floatVector.push_back(20.021);
+    stringVector.push_back("123");
+
+    EXPECT_EQ(intVector[0], 10);
+    EXPECT_EQ(floatVector[0], 20.021f);
+    EXPECT_EQ(stringVector[0], "123");
+
+}
 
 GTEST_API_ int main(int argc, char *argv[]) 
 {
