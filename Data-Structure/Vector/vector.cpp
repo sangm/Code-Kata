@@ -15,6 +15,14 @@ Vector<T>::Vector(const Vector<T>& rhs) : __size(rhs.size()), __capacity(rhs.cap
 }
 
 template <class T>
+Vector<T>::Vector(unsigned int n, const T& val)
+{
+    buffer = new T[__capacity];
+    for (int i = 0; i < n; ++i)
+        buffer[i] = val;
+}
+
+template <class T>
 Vector<T>& Vector<T>::operator=(const Vector<T>& rhs) 
 {
     if (this == &rhs)
@@ -130,9 +138,3 @@ T& Vector<T>::operator[](unsigned int index)
     return buffer[index];
 }   
 
-template <class T>
-void Vector<T>::assign(unsigned int n, const T& val)
-{
-    delete [] buffer;
-        
-}

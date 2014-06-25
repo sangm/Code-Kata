@@ -12,6 +12,7 @@ public:
     /* Member Functions */
     Vector(unsigned int capacity = 0);
     Vector(const Vector<T>& rhs);
+    Vector(unsigned int n, const T& val);
     Vector<T>& operator=(const Vector<T>& rhs);
 
     ~Vector();
@@ -37,7 +38,6 @@ public:
     T& operator[](unsigned int index);
 
     /* Modifiers */
-    void assign(unsigned int n, const T& val);
 };
 
 #include "vector.cpp"

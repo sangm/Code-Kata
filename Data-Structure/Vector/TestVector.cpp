@@ -11,21 +11,6 @@ protected:
     Vector<int> vector;
 };
 
-/*TEST_F(TestVectorFunction, AssignFunctionReplacesVector)
-{
-    vector.push_back(100);
-    vector.push_back(200);
-    vector.push_back(300);
-    vector.push_back(200);
-    ASSERT_EQ(vector[0], 100);
-    ASSERT_EQ(vector[1], 200);
-    ASSERT_EQ(vector[2], 300);
-    ASSERT_EQ(vector[3], 200);
-
-    vector.assign(2, 100);
-    EXPECT_EQ(vector[0], 100);
-    EXPECT_EQ(vector[1], 100);
-}*/
 TEST_F(TestVectorFunction, VectorAssignmentOperatorOverloaded)
 {
     Vector<int> copy_vector;
@@ -162,6 +147,15 @@ TEST_F(TestVectorFunction, ReserveIncreasesCapacityOnlyIfNGreaterThanCapacity)
 /*
  * Constructor Tests
  **/
+TEST(TestVectorConstructor, OverloadConstructorSetsIntitalValue)
+{
+    Vector<int> vector(5, 100);
+    EXPECT_EQ(vector[0], 100);
+    EXPECT_EQ(vector[1], 100);
+    EXPECT_EQ(vector[2], 100);
+    EXPECT_EQ(vector[3], 100);
+    EXPECT_EQ(vector[4], 100);
+}
 TEST(TestVectorConstructor, OverLoadConstructorSetsCapacity)
 {
     Vector<int> vector(10); // Capacity should be 10
