@@ -26,6 +26,24 @@ protected:
     EXPECT_EQ(vector[0], 100);
     EXPECT_EQ(vector[1], 100);
 }*/
+TEST_F(TestVectorFunction, VectorAssignmentOperatorOverloaded)
+{
+    Vector<int> copy_vector;
+    copy_vector.push_back(4);
+    copy_vector.push_back(8);
+    copy_vector.push_back(9);
+
+    vector.push_back(1);
+    vector.push_back(2);
+
+    vector = copy_vector;
+
+    EXPECT_EQ(vector[0], 4);
+    EXPECT_EQ(vector[1], 8);
+    EXPECT_EQ(vector[2], 9);
+    EXPECT_NE(vector.begin(), copy_vector.begin());
+    EXPECT_NE(vector.end(), copy_vector.end());
+}
 TEST_F(TestVectorFunction, VectorCopyConstructorOverloaded)
 {
     vector.push_back(1);

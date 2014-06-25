@@ -12,6 +12,8 @@ public:
     /* Member Functions */
     Vector(unsigned int capacity = 0);
     Vector(const Vector<T>& rhs);
+    Vector<T>& operator=(const Vector<T>& rhs);
+
     ~Vector();
 
     /* Iterators */

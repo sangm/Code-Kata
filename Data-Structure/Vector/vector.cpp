@@ -15,6 +15,21 @@ Vector<T>::Vector(const Vector<T>& rhs) : __size(rhs.size()), __capacity(rhs.cap
 }
 
 template <class T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& rhs) 
+{
+    if (this == &rhs)
+        return *this;
+    __size = rhs.size();
+    __capacity = rhs.capacity();
+
+    delete [] buffer;
+    this->buffer = new T[__capacity];
+    for (unsigned int i = 0; i < __size; ++i)
+        buffer[i] = rhs.buffer[i];
+    return *this;
+}
+
+template <class T>
 Vector<T>::~Vector()
 {
     delete [] buffer;
