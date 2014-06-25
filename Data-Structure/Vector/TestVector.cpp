@@ -11,6 +11,43 @@ protected:
     Vector<int> vector;
 };
 
+/*TEST_F(TestVectorFunction, AssignFunctionReplacesVector)
+{
+    vector.push_back(100);
+    vector.push_back(200);
+    vector.push_back(300);
+    vector.push_back(200);
+    ASSERT_EQ(vector[0], 100);
+    ASSERT_EQ(vector[1], 200);
+    ASSERT_EQ(vector[2], 300);
+    ASSERT_EQ(vector[3], 200);
+
+    vector.assign(2, 100);
+    EXPECT_EQ(vector[0], 100);
+    EXPECT_EQ(vector[1], 100);
+}*/
+TEST_F(TestVectorFunction, VectorCopyConstructorOverloaded)
+{
+    vector.push_back(1);
+    vector.push_back(3);
+    vector.push_back(2);
+    Vector<int> copy_vector = vector;
+    EXPECT_EQ(copy_vector[0], 1);
+    EXPECT_EQ(copy_vector[1], 3);
+    EXPECT_EQ(copy_vector[2], 2);
+
+    EXPECT_NE(copy_vector.data(), vector.data());
+
+}
+TEST_F(TestVectorFunction, IteratorEndEqualsDataPlusN)
+{
+    vector.push_back(2);
+    EXPECT_EQ(vector.end(), vector.data() + 1);
+}
+TEST_F(TestVectorFunction, IteratorBeginEqualsData)
+{
+    EXPECT_EQ(vector.begin(), vector.data());
+}
 TEST_F(TestVectorFunction, ResizeVectorSizeGreaterThanCurrentCapacity)
 {
     ASSERT_EQ(vector.capacity(), 0);

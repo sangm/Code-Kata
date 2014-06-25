@@ -7,9 +7,29 @@ Vector<T>::Vector(unsigned int capacity) : __size(0), __capacity(capacity)
 }
 
 template <class T>
+Vector<T>::Vector(const Vector<T>& rhs) : __size(rhs.size()), __capacity(rhs.capacity())
+{
+    this->buffer = new T[__capacity];
+    for (unsigned int i = 0; i < __size; ++i)
+        buffer[i] = rhs.buffer[i];
+}
+
+template <class T>
 Vector<T>::~Vector()
 {
     delete [] buffer;
+}
+
+template <class T>
+typename Vector<T>::iterator Vector<T>::begin()
+{
+    return buffer;
+}
+
+template <class T>
+typename Vector<T>::iterator Vector<T>::end()
+{
+    return buffer + __size;
 }
 
 template <class T>
@@ -88,8 +108,16 @@ T& Vector<T>::front()
 {
     return buffer[0];
 }
+
 template <class T>
 T& Vector<T>::operator[](unsigned int index)
 {
     return buffer[index];
 }   
+
+template <class T>
+void Vector<T>::assign(unsigned int n, const T& val)
+{
+    delete [] buffer;
+        
+}
