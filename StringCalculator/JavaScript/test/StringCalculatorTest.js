@@ -32,5 +32,10 @@ describe('StringCalculator', function() {
             assert.equal(4, calc.add('//;\n2;2'));
             assert.equal(8, calc.add('//;\n4;2;2'));
         });
+        it('should throw an error given a negative number', function() {
+            assert.throws(function() {
+                throw new Error('Negatives not allowed');   
+            }, Error);
+        });
     });
 });
