@@ -37,5 +37,26 @@ describe('StringCalculator', function() {
                 throw new Error('Negatives not allowed');   
             }, Error);
         });
+        it('should ignore numbers greater than 1000', function() {
+            assert.equal(0, calc.add('1001,2000,3000,4000'));
+        });
+        it('should handle changing delimiters of any length', function() {
+            assert.equal(2, calc.add('//***\n1***1'));
+            assert.equal(4, calc.add('//***\n2***2'));
+            assert.equal(8, calc.add('//***\n4***2***2'));
+            assert.equal(8, calc.add('//%%\n4%%2%%2'));
+        });
+        it('should handle multiple delimiters', function() {
+            assert.equal(4, calc.add('//[*][%]\n1*1%3'));
+        });
+    });
+    describe('JavaScript Regex', function() {
+        it('should match brackets optionally', function() {
+            var test = '//[*][%]\n1*2%3';
+            var match = null;
+            var regex = /\/\/\[?(.+?)\]?\n(.+)/
+            match = regex.exec(test);
+            console.log(match);
+        });
     });
 });
