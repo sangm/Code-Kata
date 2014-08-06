@@ -10,7 +10,7 @@ private:
     struct Node {
         int data;
         Node* next;
-        Node(int d, Node *n = NULL) {
+        Node(int d, Node *n = nullptr) {
             data = d;
             next = n;
         };
@@ -19,11 +19,14 @@ private:
     Node *head, *tail;
     void print();
 
-    FRIEND_TEST(TestSingleLL, HeadAndTailGetsInitializedToNull);
-    FRIEND_TEST(TestSingleLL, DestructorDoesNotLeakMemory);
+    friend class TestSingleLL;
+    FRIEND_TEST(TestSingleLL, Head_And_Tail_Gets_Initialized_To_Null);
+    FRIEND_TEST(TestSingleLL, Destructor_Does_Not_Leak_Memory);
 public:
     SingleLL();
     ~SingleLL();
+
+    bool empty();
 };
 
 #endif
