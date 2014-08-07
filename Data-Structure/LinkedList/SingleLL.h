@@ -3,6 +3,8 @@
 
 #include <gtest/gtest_prod.h>
 #include <iostream>
+#include <stdexcept>
+
 
 
 class SingleLL {
@@ -17,7 +19,7 @@ private:
     };
 
     Node *head, *tail;
-    void print();
+    int numNodes;
 
     friend class TestSingleLL;
     FRIEND_TEST(TestSingleLL, Head_And_Tail_Gets_Initialized_To_Null);
@@ -25,6 +27,14 @@ private:
 public:
     SingleLL();
     ~SingleLL();
+
+    void addToHead(int data);
+    void addToTail(int data);
+
+    int deleteFromHead();
+    int deleteFromTail(); 
+
+    void deleteNode(int pos);
 
     bool empty();
 };

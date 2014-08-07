@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -pthread -Wall -std=c++11
+CXXFLAGS = -g -pthread -Wall -std=c++11
 
 TestSingleLL: TestSingleLL.cpp SingleLL.o
 	$(CXX) $(CXXFLAGS)  -lgtest -lpthread $^ -o $@
