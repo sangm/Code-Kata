@@ -147,7 +147,6 @@ TEST_F(TestSingleLL, Inserting_To_List_Given_An_Index) {
     for (int i = 0; i < 5; ++i)
         ll.addToList(i, 3);
     // ll = [1, 4, 2, 4, 3, 2, 1,0]
-
 }
 
 // write a test out of range delete node
