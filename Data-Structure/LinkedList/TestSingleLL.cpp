@@ -147,6 +147,15 @@ TEST_F(TestSingleLL, Inserting_To_List_Given_An_Index) {
     for (int i = 0; i < 5; ++i)
         ll.addToList(i, 3);
     // ll = [1, 4, 2, 4, 3, 2, 1,0]
+    head = getHeadPointer(ll);
+    EXPECT_EQ(1, head->data);
+    EXPECT_EQ(4, head->next->data);
+    EXPECT_EQ(2, head->next->next->data);
+    EXPECT_EQ(4, head->next->next->next->data);
+    EXPECT_EQ(3, head->next->next->next->next->data);
+    EXPECT_EQ(2, head->next->next->next->next->next->data);
+    EXPECT_EQ(1, head->next->next->next->next->next->next->data);
+    EXPECT_EQ(0, head->next->next->next->next->next->next->next->data);
 }
 
 // write a test out of range delete node
