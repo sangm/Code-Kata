@@ -1,5 +1,13 @@
 import unittest
 
+def recursive_chop_aux(li, left, right, element):
+    if left > right: return -1
+    mid = left + (right - left) // 2
+    if li[mid] == element: return mid
+    elif li[mid] > element: return recursive_chop_aux(li, left, mid-1, element)
+    else: return recursive_chop_aux(li, mid+1, right, element)
+def recursive_chop(n, li):
+    return recursive_chop_aux(li, 0, len(li)-1, n)
 def chop(n, li):
     if (len(li) == 0): return -1
     
